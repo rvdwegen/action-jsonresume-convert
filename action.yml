@@ -1,0 +1,38 @@
+# action.yml
+name: 'JSONResume Convert'
+description: 'Simple GitHub Action to convert your JSONResume to HTML/PDF'
+branding:
+  icon: 'file-text'
+  color: 'blue'
+inputs:
+  theme:
+    description: |
+      JSONResume theme name.
+      Assumes the theme package would be found 
+      as `jsonresume-theme-{theme}` in NPM.
+      You can search for themes at https://npmsearch.com/?q=jsonresume-theme
+    required: true
+    default: 'flat'
+  resume_filepath:
+    description: |
+      File path of the resume in JSONResume format
+    required: false
+    default: 'resume.json'
+  output_html_filepath:
+    description: |
+      Output file path for exported HTML file.
+    required: false
+    default: 'index.html'
+  output_pdf_filepath:
+    description: |
+      Output file path for exported PDF file.
+    required: false
+    default: 'resume.pdf'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.theme }}
+    - ${{ inputs.resume_filepath }}
+    - ${{ inputs.output_html_filepath }}
+    - ${{ inputs.output_pdf_filepath }}
