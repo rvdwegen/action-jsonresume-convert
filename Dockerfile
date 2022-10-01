@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:14
 
 LABEL repository="https://github.com/kelvintaywl/jsonresume-github-page"
 LABEL homepage="https://github.com/kelvintaywl/jsonresume-github-page"
